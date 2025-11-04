@@ -1,15 +1,15 @@
 from dotenv import load_dotenv
 import pyodbc
+import os
 
 load_dotenv()
-
 
 def connection():
     try:
         conn = pyodbc.connect(
             'DRIVER={ODBC Driver 17 for SQL Server};'
-            'SERVER=10.1.1.252;'
-            'DATABASE=Solides;'
+            f'SERVER={os.getenv("DB_HOST")};'
+            f'DATABASE={os.getenv("DB_DATABASE")};'
             'Trusted_Connection=yes;'
         )
         return conn
