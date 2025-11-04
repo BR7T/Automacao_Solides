@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
-from mysql import connector
 import pyodbc
-import os
+
 load_dotenv()
 
 
@@ -14,6 +13,6 @@ def connection():
             'Trusted_Connection=yes;'
         )
         return conn
-    except connector.Error as err:
+    except pyodbc.Error as err:
         print("ERRO: ",err)
         return None
