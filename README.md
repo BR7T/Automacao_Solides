@@ -92,6 +92,26 @@ CREATE TABLE dbo.Pontos (
 GO
 ```
 
+## 💡Aumentar quantidade de dias
+Por padrão a automação busca apenas do dia anterior até o momento da consulta, para mudar, você pode acessar o arquivo `src\main` e procurar pela linha:  
+```
+diaconsulta = datetime.now().date() - timedelta(days=1)
+```  
+Você pode alterar a quantidade de dias em `days=1` aumentando o intervalo de dias 
+#### ou  
+Acesse o arquivo `\scr\functions\Solides\get.py` e na função `GetAllSolidesPontos` e siga os seguintes passos:  
+Retire o comentário da segunda variável e comente a primeira:
+```
+url = f"https://apis.tangerino.com.br/punch/?size=500&page={page}&startDate={dia}"
+# url = f"https://apis.tangerino.com.br/punch/?size=500&page={page}"
+```
+Ficará dessa forma:  
+```
+# url = f"https://apis.tangerino.com.br/punch/?size=500&page={page}&startDate={dia}"
+url = f"https://apis.tangerino.com.br/punch/?size=500&page={page}"
+```
+
+Assim você buscará todos os pontos já registrados, **o que pode demandar muito tempo**
 ## 🧱 Estrutura do projeto
 ```
 src/
